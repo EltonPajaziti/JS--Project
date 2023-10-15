@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Package</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+    <div class="para">
+        <img src="ppp-removebg-preview.png" alt="Premium" height="200px">
+    </div>
+    <div id="paymentForm" >
+        <h2>Payment Information</h2>
+        <form id="paymentInfo">
+            <label for="emri">Name:</label>
+            <input type="text" id="emri" required><br>
+
+
+            <label for="email">Email:</label>
+            <input type="email" id="email"  required><br>
+
+            <label for="cardNumber">Card Number:</label>
+            <input type="text" id="cardNumber" pattern="[0-9]*" required><br>
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" pattern="[0-9]*" required><br>
+
+            <button id="confirmPurchaseButton">Confirm Purchase</button>
+        </form>
+    </div>
+
+    <div id="successMessage" >
+        <h2>Thank you for your purchase!</h2>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const confirmPurchaseButton = document.getElementById("confirmPurchaseButton");
+            const paymentInfoForm = document.getElementById("paymentInfo");
+
+            confirmPurchaseButton.addEventListener("click", function(event) {
+                event.preventDefault(); // Parandalon dërgimin e formës
+
+                // Merr vlerat e input-ave
+                const name = document.getElementById("emri").value;
+                const email = document.getElementById("email").value;
+                const cardNumber = document.getElementById("cardNumber").value;
+                const cvv = document.getElementById("cvv").value;
+
+                // Krijon një objekt për të ruajtur të dhënat
+                const purchaseData2 = {
+                    name: name,
+                    email: email,
+                    cardNumber: cardNumber,
+                    cvv: cvv,
+                    package: "Premium Package"
+                };
+
+                // Ruaj të dhënat në localStorage
+                localStorage.setItem("purchaseData2", JSON.stringify(purchaseData2));
+
+                alert("You successfully paid!");
+
+                // Përcjell përdoruesin tek faqja e indeksit
+                window.location.href = "index.html";
+            });
+        });
+    </script>
+
+</body>
+</html>
